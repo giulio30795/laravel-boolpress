@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
         <!-- Styles -->
         {{-- <style>
@@ -65,9 +66,10 @@
     </head>
     <body>
 
-        <div id="app">
-            Vue
+        <div id="root">
+            
         </div>
+        <script src="{{asset('js/front.js')}}"></script>
 
         {{-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
