@@ -66,7 +66,7 @@
     <body>
 
         <div id="app">
-            
+            Vue
         </div>
 
         {{-- <div class="flex-center position-ref full-height">
