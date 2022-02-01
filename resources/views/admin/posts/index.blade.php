@@ -4,6 +4,9 @@
 <div class="container">
 
     <table class="table">
+        <button class="btn btn-success my-3">
+            <a class="text-white" href="{{ route('admin.posts.create') }}">Add New Post</a>
+        </button>
         <thead>
             <tr>
                 <th>ID</th>
