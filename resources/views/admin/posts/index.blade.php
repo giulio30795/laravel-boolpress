@@ -23,7 +23,9 @@
                         <button class="btn btn-primary">
                             <a class="text-white"href="{{ route('admin.posts.show', $post->id) }}">View Details</a>
                         </button>
-                        <button class="btn btn-warning">Edit</button>
+                        <button class="btn btn-warning">
+                            <a href="{{ route('admin.posts.edit', $post->id) }}">Edit Post</a>
+                        </button>
                         <button class="btn btn-danger">Delete</button>
                     </td>
                 </tr>

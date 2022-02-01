@@ -86,8 +86,11 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
-        //
+        $post = Post::find($id);
+
+        return view ('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -99,7 +102,28 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+        $data = $request->all();
+        
+        if( $post->title != $data['title']) {
+            $slug = Str::slug($data['title'], '-');
+            $count = 1;
+            $base_slug = $slug;
+
+        while(Post::where('slug', $slug)->first()){
+            $slug = $base_slug . '-' . $count;
+            $count++;
+        }
+        $data['slug'] = $slug;
+
+        } else {
+            $data['slug'] = $post->slug;
+
+        }
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
