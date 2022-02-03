@@ -6,6 +6,8 @@
             {{ $post->title }}
         </h1>
 
+        {{-- <h3>Categoria : {{$post->category->name}}</h3> --}}
+
         <p>{{ $post->body }}</p>
 
         <div class="d-flex mt-3">
