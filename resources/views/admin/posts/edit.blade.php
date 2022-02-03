@@ -27,6 +27,18 @@
             <label class="form-label" for="body">Title</label>
             <textarea class="form-control" name="body" id="body" rows="10">{{old('body', $post->body)}}</textarea>
         </div>
+        
+        <select class="form-control" name="category_id" id="category_id">
+            <option value="">Uncategorized</option>
+
+            @foreach ( $categories as $category )
+
+                <option value="{{$category->id}}"
+                    @if ($category->id == old('category_id', $post->category_id)) selected @endif>
+                    {{$category->name}}
+                </option>
+            @endforeach
+        </select>
 
             <button class="btn btn-success" type="submit"> Edit Service</button>
         </form>

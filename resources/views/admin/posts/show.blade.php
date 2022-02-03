@@ -6,7 +6,13 @@
             {{ $post->title }}
         </h1>
 
-        {{-- <h3>Categoria : {{$post->category->name}}</h3> --}}
+        <strong>Category</strong>
+                @if ($post->category)
+                    {{ $post->category->name }}
+                @else
+                    Uncategorized
+                @endif
+            </span>
 
         <p>{{ $post->body }}</p>
 
