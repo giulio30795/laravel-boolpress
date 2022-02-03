@@ -22,6 +22,7 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Category</th>
                 <th colspan="3">Actions</th>
             </tr>
         </thead>
@@ -30,6 +31,12 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
+                    <td>
+                        <a href="{{route('admin.category', $post->category->id)}}">
+                            {{$post->category->name}}
+                        </a>
+                    </td>
+
                     <td class="d-flex">
                         <button class="btn btn-primary">
                             <a class="text-white"href="{{ route('admin.posts.show', $post->id) }}">View Details</a>
