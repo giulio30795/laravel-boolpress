@@ -43,6 +43,7 @@ class PostController extends Controller
 
             'title' => 'required|unique:posts|max:255',
             'body' => 'required|max:255',
+            'category_id' => 'nullable|exists:categories,id'
         ]);
 
         // The blog post is valid...
