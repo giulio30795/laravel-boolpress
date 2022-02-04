@@ -6,13 +6,22 @@
             {{ $post->title }}
         </h1>
 
+
+
         <strong>Category</strong>
+            <span>
                 @if ($post->category)
                     {{ $post->category->name }}
                 @else
                     Uncategorized
                 @endif
             </span>
+            <strong>Tag</strong>
+            @foreach ($post->tags as $tag )
+            <span class="badge">
+                {{$tag->name}}   
+            </span>
+            @endforeach
 
         <p>{{ $post->body }}</p>
 
