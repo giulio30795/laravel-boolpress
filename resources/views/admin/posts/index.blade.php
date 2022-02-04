@@ -60,5 +60,22 @@
             
         </tbody>
     </table>
+
+    <h2>Post per Tag</h2>
+
+    @foreach ($tags as $tag )
+
+            <h4>{{$tag->name}}</h4>
+
+                @if($tag->posts->isEmpty()) {
+                    <p>No post Found</p>
+                } @else 
+                    @foreach ($tag->posts as $post)
+                        <h4>{{$post->title}}</h4>
+                    @endforeach
+                @endif
+                
+    @endforeach
+
 </div>
 @endsection
