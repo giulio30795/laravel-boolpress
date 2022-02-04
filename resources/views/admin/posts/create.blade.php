@@ -22,7 +22,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label" for="body">Title</label>
+            <label class="form-label" for="body">Body</label>
             <textarea class="form-control" name="body" id="body" rows="10">{{old('body')}}</textarea>
         </div>
 
@@ -41,7 +41,20 @@
                 @endforeach
             </select>
         </div>
+            <div class="mb-3">
+                <h4>Tags</h4>
+                
+                @foreach ( $tags as $tag )
+                    <input type="checkbox" name="tags[]" id="tag{{$loop->iteration}}" value="{{$tag->id}}"
+                    >
 
+                    <label for="tag{{$loop->iteration}}">
+                        {{$tag->name}}
+                    </label>
+                @endforeach
+            </div>
+
+        
             <button class="btn btn-success" type="submit"> Add Post</button>
         </form>
     </div>
