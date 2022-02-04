@@ -44,10 +44,10 @@
             @foreach ( $tags as $tag )
                     <input type="checkbox" name="tags[]" id="tag{{$loop->iteration}}" value="{{$tag->id}}"
 
-                    @if(!$errors->any() && in_array($tag->id, old('tags' ,[])))
+                    @if($errors->any() && in_array($tag->id, old('tags')))
                         checked
 
-                   @elseif(!$errors->any() && $post->tags->contains($tag->id)) 
+                   @elseif(!$errors->any() && $post->tags->contains($tag->id))
                     checked
 
                      @endif>
