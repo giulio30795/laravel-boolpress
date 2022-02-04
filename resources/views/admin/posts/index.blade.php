@@ -32,9 +32,13 @@
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
                     <td>
-                        <a href="{{route('admin.category', $post->category->id)}}">
-                            {{$post->category->name}}
-                        </a>
+                        @if($post->category) 
+                            <a href="{{route('admin.category', $post->category->id)}}">
+                                {{$post->category->name}}
+                            </a>
+                        @else 
+                        Uncategorized 
+                        @endif
                     </td>
 
                     <td class="d-flex">

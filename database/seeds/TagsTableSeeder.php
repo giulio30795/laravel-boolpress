@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Str;
 use App\Tag;
 
 class TagsTableSeeder extends Seeder
+
 {
     /**
      * Run the database seeds.
