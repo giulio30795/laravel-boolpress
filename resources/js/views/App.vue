@@ -7,20 +7,30 @@
         </article>
 
         <section class="pagination">
-          <button 
-          @click="getPost(pagination.current - 1 )"
-          :disabled="pagination.current == 1"
-          class="btn mr-1 btn-primary">
-            Prev
-          </button>
+            <button
+                @click="getPost(pagination.current - 1)"
+                :disabled="pagination.current == 1"
+                class="btn mr-1 btn-primary"
+            >
+                Prev
+            </button>
 
-          <button 
-          @click="getPost(pagination.current + 1 )"
-          :disabled="pagination.current == pagination.last"
-          class="btn btn-primary">
-            
-            Next
-          </button>
+            <button
+            class="btn mr-2"
+            :class="pagination.current === i ? `btn-primary` : `btn-secondary`"
+            @click="getPost(i)"
+            v-for=" i in pagination.last" :key="`page-${i}`">
+                  {{i}}
+            </button>
+
+
+            <button
+                @click="getPost(pagination.current + 1)"
+                :disabled="pagination.current == pagination.last"
+                class="btn btn-primary"
+            >
+                Next
+            </button>
         </section>
     </div>
 </template>
@@ -42,15 +52,16 @@ export default {
         };
     },
     methods: {
-        getPost(page = 1 ) {
-            axios.get(`http://127.0.0.1:8000/api/posts?page=${page}`)
+        getPost(page = 1) {
+            axios
+                .get(`http://127.0.0.1:8000/api/posts?page=${page}`)
                 .then((res) => {
-                this.posts = res.data.data;
-                this.pagination = {
-                  current : res.data.current_page,
-                  last : res.data.last_page,
-                }
-            });
+                    this.posts = res.data.data;
+                    this.pagination = {
+                        current: res.data.current_page,
+                        last: res.data.last_page,
+                    };
+                });
         },
     },
 };
