@@ -1920,6 +1920,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
@@ -1928,15 +1945,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      posts: null
+      posts: null,
+      pagination: null
     };
   },
   methods: {
     getPost: function getPost() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default()("http://127.0.0.1:8000/api/posts").then(function (res) {
-        _this.posts = res.data;
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts?page=".concat(page)).then(function (res) {
+        _this.posts = res.data.data;
+        _this.pagination = {
+          current: res.data.current_page,
+          last: res.data.last_page
+        };
       });
     }
   }
@@ -2440,6 +2463,36 @@ var render = function () {
           _c("p", [_vm._v(_vm._s(post.body))]),
         ])
       }),
+      _vm._v(" "),
+      _c("section", { staticClass: "pagination" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn mr-1 btn-primary",
+            attrs: { disabled: _vm.pagination.current == 1 },
+            on: {
+              click: function ($event) {
+                return _vm.getPost(_vm.pagination.current - 1)
+              },
+            },
+          },
+          [_vm._v("\n        Prev\n      ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { disabled: _vm.pagination.current == _vm.pagination.last },
+            on: {
+              click: function ($event) {
+                return _vm.getPost(_vm.pagination.current + 1)
+              },
+            },
+          },
+          [_vm._v("\n        \n        Next\n      ")]
+        ),
+      ]),
     ],
     2
   )
