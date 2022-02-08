@@ -16,13 +16,16 @@
             </button>
 
             <button
-            class="btn mr-2"
-            :class="pagination.current === i ? `btn-primary` : `btn-secondary`"
-            @click="getPost(i)"
-            v-for=" i in pagination.last" :key="`page-${i}`">
-                  {{i}}
+                class="btn mr-2"
+                :class="
+                    pagination.current === i ? `btn-primary` : `btn-secondary`
+                "
+                @click="getPost(i)"
+                v-for="i in pagination.last"
+                :key="`page-${i}`"
+            >
+                {{ i }}
             </button>
-
 
             <button
                 @click="getPost(pagination.current + 1)"
