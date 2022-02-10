@@ -1,23 +1,35 @@
 <template>
-    <div class="container">
-        <h1 class="mb-3">{{ post.title }}</h1>
-        <h4> {{post.category.name}} </h4>
 
-        <span class="badge badge-primary mr-1" v-for="tag in post.tags" :key="`tag-${tag.id}`">
-            {{tag.name}}
-        </span>
-        <p>{{ post.body }}</p>
+    <div>
+        <div v-if="post">
+            <h1 class="mb-3">{{ post.title }}</h1>
+            <h4> {{post.category.name}} </h4>
+
+            <span class="badge badge-primary mr-1" v-for="tag in post.tags" :key="`tag-${tag.id}`">
+                {{tag.name}}
+            </span>
+            <p>{{ post.body }}</p>
+        </div>
+        <div class="container mt-3" v-else>
+            <Loader 
+            text ="loading post..." />
+        </div>
+
     </div>
+
 </template>
 
 <script>
 import axios from 'axios';
+import Loader from '../components/Loader.vue'
 export default {
     name: 'PostDetail',
-
+        components:{
+            Loader,
+        },
     data() {
         return {
-            post: '',
+            post: null,
         }
     },
     created(){
