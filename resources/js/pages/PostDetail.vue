@@ -1,6 +1,11 @@
 <template>
     <div class="container">
         <h1 class="mb-3">{{ post.title }}</h1>
+        <h4> {{post.category.name}} </h4>
+
+        <span class="badge badge-primary mr-1" v-for="tag in post.tags" :key="`tag-${tag.id}`">
+            {{tag.name}}
+        </span>
         <p>{{ post.body }}</p>
     </div>
 </template>
@@ -12,7 +17,7 @@ export default {
 
     data() {
         return {
-            post: null,
+            post: '',
         }
     },
     created(){
