@@ -1,23 +1,24 @@
 <template>
     <div>
         <Header />
-
-    <rotuer-view></rotuer-view>
-
+        <main>
+            <router-view></router-view>
+        </main>
     </div>
     
 </template>
 
 <script>
 import Header from '../components/Header.vue'
-import Home from '../pages/Home.vue'
+
 export default {
     name: 'App',
     components: {
         Header,
     }
 }
+
 </script>
-<style>
+<style lang="scss">
 
 </style>
