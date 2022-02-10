@@ -3599,7 +3599,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "container mt-3" }, [
     _vm.post
       ? _c(
           "div",
@@ -3619,7 +3619,7 @@ var render = function () {
               )
             }),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.post.body))]),
+            _c("p", { staticClass: "mt-2" }, [_vm._v(_vm._s(_vm.post.body))]),
           ],
           2
         )
