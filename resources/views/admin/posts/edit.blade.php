@@ -58,8 +58,15 @@
                 @endforeach
         </div>
 
+
+
         <div class="mb-3">
             <label for="cover" class="form-label">Cover</label>
+
+            @if ($post->cover)
+                <img src="{{$post->cover}}" alt="">
+            @endif
+            
             <input type="file" class="form-control-file"  name="cover" id="cover">
         </div>
 

@@ -13,6 +13,7 @@ class Post extends Model
         'body',
         'slug',
         'category_id',
+        'cover',
     ];
 
 

@@ -53,20 +53,20 @@ class PostController extends Controller
             'title' => 'required|unique:posts|max:255',
             'body' => 'required|max:255',
             'category_id' => 'nullable|exists:categories,id',
-            'cover' => 'nullable|file|mime:jpeg, bpm, png'
+            'cover' => 'nullable|file|mimes:jpeg,jpg,bpm,png'
         ]);
-
+        
+        $data = $request->all();
         if(array_key_exists('cover', $data)){
             
             $img_path = Storage::put('posts-cover', $data['cover']);
 
-            $img_path = $data['cover'];
+            $data['cover'] = $img_path;
         }
 
 
 
         // The blog post is valid...
-        $data = $request->all();
         $new_post = new Post();
 
         $slug = Str::slug($data['title'], '-');
@@ -135,9 +135,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::find($id);
+
+        $validated = $request->validate([
+
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required|max:255',
+            'category_id' => 'nullable|exists:categories,id',
+            'cover' => 'nullable|file|mimes:jpeg,jpg,bpm,png'
+        ]);
 
         $data = $request->all();
+
+        $post = Post::find($id);
+
+        if(array_key_exists('cover', $data)){
+
+            if($post->cover){
+                Storage::delete($post->cover);
+            }
+            $data['cover'] = Storage::put('posts-cover', $data['cover']);
+        }
+
         
         if( $post->title != $data['title']) {
             $slug = Str::slug($data['title'], '-');

@@ -28,7 +28,7 @@
         <p>{{ $post->body }}</p>
 
             <div class="mb-3">
-                <img src="{{ asset('storage/' . $posts->cover)}}" alt="{{$post->cover}}">
+                <img class="img-fluid" src="{{ asset('storage/' . $post->cover)}}" alt="{{$post->cover}}">
             </div>
 
         <div class="d-flex mt-3">
