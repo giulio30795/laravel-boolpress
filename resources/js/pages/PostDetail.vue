@@ -9,6 +9,11 @@
                 {{tag.name}}
             </span>
             <p class="mt-2">{{ post.body }}</p>
+
+            <div v-if="post.cover" class="mb-3">
+                <img :src="post.cover" :alt="post.title">
+            </div>
+
         </div>
         <div class="container mt-3" v-else>
             <Loader 

@@ -57,6 +57,8 @@ class PostController extends Controller
         ]);
         
         $data = $request->all();
+        $new_post = new Post();
+
         if(array_key_exists('cover', $data)){
             
             $img_path = Storage::put('posts-cover', $data['cover']);
@@ -67,7 +69,7 @@ class PostController extends Controller
 
 
         // The blog post is valid...
-        $new_post = new Post();
+        
 
         $slug = Str::slug($data['title'], '-');
         $count = 1;
@@ -138,7 +140,7 @@ class PostController extends Controller
 
         $validated = $request->validate([
 
-            'title' => 'required|unique:posts|max:255',
+            'title' => 'required|max:255',
             'body' => 'required|max:255',
             'category_id' => 'nullable|exists:categories,id',
             'cover' => 'nullable|file|mimes:jpeg,jpg,bpm,png'
@@ -194,6 +196,10 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         
+        if($post->cover){
+            Storage::delete($post->cover);
+        }
+
         $post->delete();
 
         return redirect()->route('admin.posts.index')->with('deleted' , $post->title);

@@ -20,12 +20,9 @@ class PostController extends Controller
         $post = Post::where('slug', $slug)->with('category', 'tags')->first();
 
         if(! $post){
-            $post['not_found'];
-        }
-
-        elseif($post->cover){
+            $post['not_found'] = true;
+        } elseif($post->cover){
             $post->cover = url('storage/' . $post->cover);
-
         }
 
 
