@@ -7,6 +7,7 @@ use App\Category;
 use App\Tag;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -51,8 +52,18 @@ class PostController extends Controller
 
             'title' => 'required|unique:posts|max:255',
             'body' => 'required|max:255',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'cover' => 'nullable|file|mime:jpeg, bpm, png'
         ]);
+
+        if(array_key_exists('cover', $data)){
+            
+            $img_path = Storage::put('posts-cover', $data['cover']);
+
+            $img_path = $data['cover'];
+        }
+
+
 
         // The blog post is valid...
         $data = $request->all();

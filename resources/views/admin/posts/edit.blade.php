@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <form class="form" action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+        <form class="form" action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 
@@ -56,6 +56,11 @@
                         {{$tag->name}}
                     </label>
                 @endforeach
+        </div>
+
+        <div class="mb-3">
+            <label for="cover" class="form-label">Cover</label>
+            <input type="file" class="form-control-file"  name="cover" id="cover">
         </div>
 
             <button class="btn btn-success" type="submit"> Edit Service</button>

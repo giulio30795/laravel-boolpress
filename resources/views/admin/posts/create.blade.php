@@ -13,18 +13,24 @@
             </div>
         @endif
 
-        <form class="form" action="{{ route('admin.posts.store') }}" method="POST">
+        <form class="form" action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+
+            {{-- Title --}}
 
         <div class="mb-3">
             <label class="form-laber" for="title">Title</label>
             <input class="form-control" type="text" name="title" id="title" value="{{old('title')}}">
         </div>
 
+            {{-- Body --}}
+
         <div class="mb-3">
             <label class="form-label" for="body">Body</label>
             <textarea class="form-control" name="body" id="body" rows="10">{{old('body')}}</textarea>
         </div>
+
+            {{-- Category --}}
 
         <div class="mb-3">
             <label for="category_id">Category</label>
@@ -41,6 +47,9 @@
                 @endforeach
             </select>
         </div>
+
+            {{-- Tags --}}
+
             <div class="mb-3">
                 <h4>Tags</h4>
                 
@@ -52,6 +61,12 @@
                         {{$tag->name}}
                     </label>
                 @endforeach
+            </div>
+
+            {{-- Cover --}}
+            <div class="mb-3">
+                <label for="cover" class="form-label">Cover</label>
+                <input type="file" class="form-control-file"  name="cover" id="cover">
             </div>
 
         

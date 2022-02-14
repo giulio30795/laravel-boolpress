@@ -16,14 +16,20 @@
                     Uncategorized
                 @endif
             </span>
+
             <strong>Tag</strong>
+
             @foreach ($post->tags as $tag )
             <span class="badge">
-                {{$tag->name}}   
+                {{$tag->name}}
             </span>
             @endforeach
 
         <p>{{ $post->body }}</p>
+
+            <div class="mb-3">
+                <img src="{{ asset('storage/' . $posts->cover)}}" alt="{{$post->cover}}">
+            </div>
 
         <div class="d-flex mt-3">
             <button class="btn btn-primary">
